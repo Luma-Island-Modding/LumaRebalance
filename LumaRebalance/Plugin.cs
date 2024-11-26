@@ -19,11 +19,11 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
         Logger.LogInfo($"Plugin {ModGUID} is loaded!");
 
-        ShopManager.Instance.OnShopAwake += OnShopAwake;
+        ShopManager.Instance.OnShopPlaced += OnShopPlaced;
     }
 
-    private void OnShopAwake(Shop instance)
+    private void OnShopPlaced(Shop instance)
     {
-        Logger.LogInfo($"Shop awake event TRIGGERED: {instance.name}");
+        Logger.LogInfo($"Shop placed event: {instance.name}");
     }
 }
