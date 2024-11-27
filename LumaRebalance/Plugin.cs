@@ -1,7 +1,5 @@
 ﻿using BepInEx;
 using LumaLibrary.Manager;
-using System.ArrayExtensions;
-using System.Linq;
 
 namespace LumaRebalance;
 
@@ -21,6 +19,19 @@ public class Plugin : BaseUnityPlugin
         ShopManager.Instance.OnShopInteract += OnShopInteract;
 
         GameDataManager.Instance.OnGameInitialized += OnGameInitialized;
+
+        NetworkManager.Instance.OnStartHost += OnHostInitialized;
+        NetworkManager.Instance.OnStartClient += OnClientInitialized;
+    }
+
+    private void OnHostInitialized()
+    {
+        LumaLibrary.Logger.LogInfo("HOST INITIALIZED");
+    }
+
+    private void OnClientInitialized()
+    {
+        LumaLibrary.Logger.LogInfo("CLIENT INITIALIZED");
     }
 
     private void OnGameInitialized(bool val)
